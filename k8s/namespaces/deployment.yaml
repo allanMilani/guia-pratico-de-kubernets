@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goserver-namespace
+  labels:
+    apps: goserver-namespace
+spec:
+  selector:
+    matchLabels:
+      app: goserver-namespace
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "goserver-namespace"
+    spec:
+      containers:
+        - name: goserver
+          image: "allanmilani/hello-go:v5.2"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
